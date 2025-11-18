@@ -4,6 +4,7 @@ import { Link } from "react-router"
 import UnloggedComponent from "../auth/components/UnloggedComponent.jsx"
 import PrivateComponent from "../auth/components/PrivateComponent.jsx"
 import LogoutNavButton from "../auth/components/LogoutNavButton.jsx"
+import AdminComponent from "../auth/components/AdminComponent.jsx"
 
 export default function Navbar() {
     return <>
@@ -36,6 +37,16 @@ export default function Navbar() {
                             <LogoutNavButton />
                         </li>
                     </PrivateComponent>
+                    <AdminComponent>
+                        <li>
+                            <Link
+                                to={"/admin/products"}
+                                className="text-lg text-white font-semibold"
+                            >
+                                Dashboard
+                            </Link>
+                        </li>
+                    </AdminComponent>
                 </ul>
             </div>
         </nav>
