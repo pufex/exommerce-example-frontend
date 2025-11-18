@@ -7,6 +7,7 @@ import RegisterPage from "./pages/RegisterPage"
 import Home from "./pages/Home"
 import Products from "./pages/admin/Products"
 import NewProductPage from "./pages/admin/NewProductPage"
+import AdminNavbar from "./layout/AdminNavbar"
 
 function App() {
   return (
@@ -21,10 +22,12 @@ function App() {
           <Route path="register" element={<RegisterPage />}/>
         </Route>
       </Route>
-      
+
       <Route path="/admin" element={<AdminRoute />}>
-        <Route path="products" element={<Products />}/>
-        <Route path="new-product" element={<NewProductPage />}/>
+        <Route element={<AdminNavbar />}>
+          <Route path="products" element={<Products />}/>
+          <Route path="new-product" element={<NewProductPage />}/>
+        </Route>
       </Route>
     </Routes>
   )
