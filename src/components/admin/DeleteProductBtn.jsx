@@ -3,7 +3,7 @@ import { useAxiosPrivate } from "../../auth/hooks/useAxiosPrivate";
 import { useState } from "react";
 import { LoaderCircle } from "lucide-react";
 
-export default function DeleteProductBtn({product_id}){
+export default function DeleteProductBtn({product_id, setProducts}){
 
     const [loading, setLoading] = useState(false)
 
@@ -13,6 +13,7 @@ export default function DeleteProductBtn({product_id}){
         try{
             setLoading(true)
             await axiosPrivate.delete(`/admin/delete-product/${product_id}`)
+            setProducts(products => products.filter((product) => product._id != product_id))
         }catch(err){
             console.log(err)
         }finally{

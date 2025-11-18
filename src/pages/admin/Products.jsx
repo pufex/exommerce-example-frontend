@@ -83,7 +83,11 @@ export default function Products() {
                                 : <div className="w-full flex flex-col">
                                     {
                                         products.map((product) => (
-                                            <ProductRow product={product} />
+                                            <ProductRow 
+                                                key={product._id} 
+                                                product={product}
+                                                setProducts={setProducts}
+                                            />
                                         ))
                                     }
                                 </div>
