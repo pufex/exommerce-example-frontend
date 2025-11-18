@@ -32,7 +32,7 @@ export default function AdminNavbar (){
                 </ul>
             </div>
         </nav>
-        <main className="w-full max-w-7xl mx-auto">
+        <main className="w-full max-w-7xl mx-auto px-4 py-4">
             <Outlet />
         </main>
     </>
