@@ -1,5 +1,9 @@
-import { Outlet } from "react-router";
+import { Outlet, Navigate } from "react-router";
+import { useAuth } from "../AuthProvider";
 
 export default function UnloggedRoute () {
-    return <Outlet />
+    const {auth} = useAuth();
+    return auth 
+        ? <Navigate to="/" replace={true} />
+        : <Outlet />
 }
