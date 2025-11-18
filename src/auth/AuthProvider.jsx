@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, useCallback, useEffect } from "react";
+import { createContext, useContext, useState, useCallback, useLayoutEffect } from "react";
 import { publicAxios } from "../api/axios"
+import { LoaderCircle } from "lucide-react";
 
 const AuthContext = createContext({});
 
@@ -10,6 +11,7 @@ export const useAuth = () => {
 export default function AuthProvider ({children}) {
 
     const [auth, setAuth] = useState(null)
+    const [loading, setLoading] = useState(true);
 
     const register = useCallback(async (name, email, password) => {
         try{
@@ -74,10 +76,11 @@ export default function AuthProvider ({children}) {
         }
     })
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const getAccessToken = async () => {
             try{
                 await refresh();
+                setLoading(false)
             }catch(err){
                 console.log(err)
             }
@@ -88,6 +91,12 @@ export default function AuthProvider ({children}) {
     }, [])
 
     return <AuthContext.Provider value={{auth, register, login, refresh, logout}}>
-        {children}
+        {
+            loading
+                ? <div className="w-full h-screen flex items-center justify-center">
+                    <LoaderCircle className="w-10 h-10 animate-spin text-red-600"/>
+                </div>
+                : children
+        }
     </AuthContext.Provider>
 }
