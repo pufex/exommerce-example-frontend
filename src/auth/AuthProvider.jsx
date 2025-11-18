@@ -19,14 +19,16 @@ export default function AuthProvider ({children}) {
             )
         }catch(err){
             console.log(err)
+            throw err
         }
     })
 
-    const login = useCallback(async (name, password) => {
+    const login = useCallback(async (email, password) => {
         try{
+            console.log(email)
             const response = await publicAxios.post(
                 "/auth/login",
-                {name, password},
+                {email, password},
                 {
                     withCredentials: true,
                     headers: {
@@ -37,6 +39,7 @@ export default function AuthProvider ({children}) {
             setAuth(response.data)
         }catch(err){
             console.log(err)
+            throw err
         }
     })
 
@@ -54,6 +57,7 @@ export default function AuthProvider ({children}) {
             setAuth(response.data)
         }catch(err){
             console.log(err)
+            throw err
         }
     })
 
