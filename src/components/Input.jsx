@@ -1,6 +1,6 @@
 import {useFormContext} from "react-hook-form"
 
-export default function Input ({className ="", id, label, name = "", type, registerOptions}) {
+export default function Input ({className ="", id, label, name = "", type, registerOptions, defaultValue}) {
     
     const {register, formState: {errors}} = useFormContext()
     
@@ -28,6 +28,7 @@ export default function Input ({className ="", id, label, name = "", type, regis
             name={name}
             id={id}
             className="w-full px-2 h-10 border border-black/20 rounded-lg text-lg text-black focus:border-red-800 outline-0 focus:border-4"
+            defaultValue={defaultValue}
             {...register(name, registerOptions)}
         />
     </div>
