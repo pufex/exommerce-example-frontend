@@ -2,6 +2,8 @@ import NavLogo from "../components/NavLogo"
 import { Outlet } from "react-router"
 import { Link } from "react-router"
 import UnloggedComponent from "../auth/components/UnloggedComponent.jsx"
+import PrivateComponent from "../auth/components/PrivateComponent.jsx"
+import LogoutNavButton from "../auth/components/LogoutNavButton.jsx"
 
 export default function Navbar() {
     return <>
@@ -29,6 +31,11 @@ export default function Navbar() {
                             </Link>
                         </li>
                     </UnloggedComponent>
+                    <PrivateComponent>
+                        <li>
+                            <LogoutNavButton />
+                        </li>
+                    </PrivateComponent>
                 </ul>
             </div>
         </nav>

@@ -67,6 +67,7 @@ export default function AuthProvider ({children}) {
             await publicAxios.get("/auth/logout", {
                 withCredentials: true,
             })
+            setAuth(null)
         }catch(err){
             console.log(err)
         }
