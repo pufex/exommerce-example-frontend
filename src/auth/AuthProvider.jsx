@@ -68,6 +68,7 @@ export default function AuthProvider ({children}) {
                 withCredentials: true,
             })
             setAuth(null)
+
         }catch(err){
             console.log(err)
         }
