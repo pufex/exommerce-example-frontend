@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback } from "react";
+import { createContext, useContext, useState, useCallback, useEffect } from "react";
 import { publicAxios } from "../api/axios"
 
 const AuthContext = createContext({});
@@ -55,6 +55,7 @@ export default function AuthProvider ({children}) {
                 }
             )
             setAuth(response.data)
+            console.log(response.data)
         }catch(err){
             console.log(err)
             throw err
@@ -70,6 +71,19 @@ export default function AuthProvider ({children}) {
             console.log(err)
         }
     })
+
+    useEffect(() => {
+        const getAccessToken = async () => {
+            try{
+                await refresh();
+            }catch(err){
+                console.log(err)
+            }
+        }
+
+        getAccessToken();
+
+    }, [])
 
     return <AuthContext.Provider value={{auth, register, login, refresh, logout}}>
         {children}
