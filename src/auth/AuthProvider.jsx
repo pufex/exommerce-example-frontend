@@ -80,9 +80,10 @@ export default function AuthProvider ({children}) {
         const getAccessToken = async () => {
             try{
                 await refresh();
-                setLoading(false)
             }catch(err){
                 console.log(err)
+            }finally{
+                setLoading(false)
             }
         }
 
