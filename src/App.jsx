@@ -10,6 +10,7 @@ import NewProductPage from "./pages/admin/NewProductPage"
 import AdminNavbar from "./layout/AdminNavbar"
 import EditProductPage from "./pages/admin/EditProductPage"
 import CartPage from "./pages/CartPage"
+import ProductsPage from "./pages/ProductsPage"
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
         <Route path="home" element={<Home />} />
 
         <Route path="cart" element={<CartPage />}/>
+
+        <Route path="products">
+            <Route index element={<ProductsPage />}/>
+        </Route>
 
         <Route path="/auth" element={<UnloggedRoute />}>
           <Route path="login" element={<LoginPage />}/>
