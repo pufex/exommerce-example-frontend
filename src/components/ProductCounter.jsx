@@ -32,7 +32,7 @@ export default function ProductCounter ({product}){
 
     return <FormProvider {...methods}>
         <form 
-            className="flex items-center justify-center gap-2"
+            className="flex items-center justify-start sm:justify-center gap-2 w-full sm:w-auto"
             onSubmit={handleSubmit(onSubmit)}
         >
             <IconButton type="button" onClick={handleDecrement}>

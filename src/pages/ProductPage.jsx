@@ -46,8 +46,8 @@ export default function ProductPage(){
             ? <h1 className="w-full text-center text-red-600 font-semibold text-lg">
                 {error}
             </h1> 
-            : <div className="w-full px-4 py-20">
-                <div className="w-full bg-gray-200 border-2 border-black/20 p-8 rounded-lg shadow-lg flex flex-col-reverse gap-8  lg:grid lg:grid-cols-2">
+            : <div className="w-full sm:px-4 sm:py-20">
+                <div className="flex flex-col-reverse p-8 bg-gray-200 min-h-screen justify-start gap-6 sm:min-h-auto sm:border-2 sm:border-black/20 sm:rounded-lg sm:shadow-lg lg:grid lg:grid-cols-2">
                     <div className="w-full h-[400px] flex items-center">
                         <img 
                             src={product.photoURL}
@@ -67,8 +67,8 @@ export default function ProductPage(){
                                 {product.description}
                             </p>
                         </div>
-                        <div className="w-full flex items-center justify-between">
-                            <p className="text-xl">
+                        <div className="w-full flex flex-col items-left sm:items-center gap-2 sm:gap-0 sm:flex-row justify-between grow sm:grow-0">
+                            <p className="text-xl w-full sm:w-auto">
                                 <span className="text-red-600 font-semibold text-xl">${product.price}</span>
                                 , <span className="font-semibold text-xl">instock: {product.instock}</span>
                             </p>
