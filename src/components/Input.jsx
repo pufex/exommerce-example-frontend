@@ -1,7 +1,9 @@
 import {useFormContext} from "react-hook-form"
+import {useWindowSize} from "../hooks/useWindowSizes"
 
 export default function Input ({className ="", id, label, name = "", type, registerOptions, defaultValue}) {
     
+    const {width: windowWidth} = useWindowSize()
     const {register, formState: {errors}} = useFormContext()
     
     return <div className={`${className} w-full flex flex-col gap-2`}>
@@ -15,12 +17,14 @@ export default function Input ({className ="", id, label, name = "", type, regis
                 </label>
             }
             {
-                errors[name] && <label 
-                    htmlFor={id}
-                    className="text-lg text-red-500 font-medium"
-                >
-                    {errors[name].message}
-                </label>
+                errors[name] && windowWidth > 500 
+                    ? <label 
+                        htmlFor={id}
+                        className="text-lg text-red-500 font-medium"
+                    >
+                        {errors[name].message}
+                    </label>
+                    : null
             }
         </div>
         <input 
@@ -31,5 +35,15 @@ export default function Input ({className ="", id, label, name = "", type, regis
             defaultValue={defaultValue}
             {...register(name, registerOptions)}
         />
+        {
+            errors[name] && windowWidth <= 500 
+                ? <label 
+                    htmlFor={id}
+                    className="text-lg text-red-500 font-medium"
+                >
+                    {errors[name].message}
+                </label>
+                : null
+        }
     </div>
 }
