@@ -11,6 +11,7 @@ import AdminNavbar from "./layout/AdminNavbar"
 import EditProductPage from "./pages/admin/EditProductPage"
 import CartPage from "./pages/CartPage"
 import ProductsPage from "./pages/ProductsPage"
+import ProductPage from "./pages/ProductPage"
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
 
         <Route path="products">
             <Route index element={<ProductsPage />}/>
+            <Route path=":id" element={<ProductPage />}/>
         </Route>
 
         <Route path="/auth" element={<UnloggedRoute />}>
