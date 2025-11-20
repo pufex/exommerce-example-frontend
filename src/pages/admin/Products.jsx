@@ -6,6 +6,7 @@ import pagination from "../../utils/pagination"
 import Button from "../../components/Button";
 import ProductRow from "../../components/admin/ProductRow";
 import PaginationButton from "../../components/PaginationButton"
+import LoadingBlock from "../../components/LoadingBlock";
 
 const productsPerPage = 8
 
@@ -118,9 +119,7 @@ export default function Products() {
         </div>
         {
             loading
-                ? <div className="w-full py-20 flex items-center justify-center">
-                    <LoaderCircle className="w-10 h-10 animate-spin text-red-600" />
-                </div>
+                ? <LoadingBlock />
                 : error
                     ? <h1 className="w-full text-center py-10 text-red-600 text-2xl font-bold">
                         Failed to fetch data from our API

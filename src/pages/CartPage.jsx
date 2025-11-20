@@ -6,7 +6,7 @@ import RemoveItemFromCart from "../components/RemoveItemFromCart"
 
 export default function CartPage() {
     const { cart } = useCart();
-    return !cart.length === 0
+    return cart.length === 0
         ? <div className="py-8 px-4 w-full">
             <h2 className="w-full text-center text-black text-2xl font-semibold mb-6">
                 Your cart is empty
