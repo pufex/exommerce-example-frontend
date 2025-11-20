@@ -9,6 +9,7 @@ import Products from "./pages/admin/Products"
 import NewProductPage from "./pages/admin/NewProductPage"
 import AdminNavbar from "./layout/AdminNavbar"
 import EditProductPage from "./pages/admin/EditProductPage"
+import CartPage from "./pages/CartPage"
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route index element={<Navigate to="/home" replace={true} />}/>        
 
         <Route path="home" element={<Home />} />
+
+        <Route path="cart" element={<CartPage />}/>
 
         <Route path="/auth" element={<UnloggedRoute />}>
           <Route path="login" element={<LoginPage />}/>
