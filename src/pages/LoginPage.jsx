@@ -4,6 +4,7 @@ import { useState } from "react";
 import Input from "../components/Input"
 import Button from "../components/Button"
 import {LoaderCircle} from "lucide-react"
+import { AxiosError } from "axios";
 
 export default function LoginPage(){
     
@@ -18,7 +19,24 @@ export default function LoginPage(){
             setLoading(true)
             await login(email, password)
         }catch(err){
-            setError("root", {message: "Failed to login"})
+            if(err instanceof AxiosError){
+                switch(err?.response?.status){
+                    case 400:
+                        setError("root", {
+                            message: "Invalid login credentials."
+                        })
+                        break;
+                    case 401:
+                        setError("root", {message: "Invalid email or password."})
+                        break;
+                    default: 
+                        setError("root", {message: "There was an error with logging in."})
+                        break
+
+                }
+            }else{
+                setError("root", {message: "There was an error with logging in."})
+            }
         }finally{
             setLoading(false)
         }
