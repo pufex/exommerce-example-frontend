@@ -14,7 +14,7 @@ export default function CartProvider({children}){
     const addToCart = useCallback((item) => {
         setCart(prev => {
             const newCart = prev.find((i) => i._id === item._id)
-                ? prev.map(i => i._id === item._id ? {...item, count: item.count+1} : item)
+                ? prev.map(i => i._id === item._id ? {...i, count: i.count+1} : i)
                 : [...prev, item]
             localStorage.setItem(key, JSON.stringify(newCart))
             return newCart
@@ -23,7 +23,7 @@ export default function CartProvider({children}){
 
     const removeFromCart = useCallback((item_id) => {
         setCart(prev => {
-            const newCart = prev.filter(i => i._id !== item._id)
+            const newCart = prev.filter(i => i._id !== item_id)
             localStorage.setItem(key, JSON.stringify(newCart))
             return newCart
         })
@@ -31,7 +31,7 @@ export default function CartProvider({children}){
 
     const incrementItem = useCallback((item_id) => {
         setCart(prev => {
-            const newCart = prev.map(i => i._id === item._id ? {...item, count: item.count+1} : item)
+            const newCart = prev.map(i => i._id === item_id ? {...i, count: i.count+1} : i)
             localStorage.setItem(key, JSON.stringify(newCart))
             return newCart
         })
@@ -39,13 +39,13 @@ export default function CartProvider({children}){
 
     const decrementItem = useCallback((item_id) => {
         setCart(prev => {
-            const foundItem = prev.find(i => i._id === item_id).count
+            const foundItem = prev.find(i => i._id === item_id)
             if(!foundItem){
                 return prev
             }
-            const newCart = foundItem === 1
+            const newCart = foundItem.count === 1
                 ? prev.filter(i => i._id !== item_id)
-                : prev.map(i => i._id === item._id ? {...item, count: item.count-1} : item) 
+                : prev.map(i => i._id === item_id ? {...i, count: i.count-1} : i) 
             localStorage.setItem(key, JSON.stringify(newCart))
             return newCart
         })

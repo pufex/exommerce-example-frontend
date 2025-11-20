@@ -5,7 +5,7 @@ import UnloggedComponent from "../auth/components/UnloggedComponent.jsx"
 import PrivateComponent from "../auth/components/PrivateComponent.jsx"
 import LogoutNavButton from "../auth/components/LogoutNavButton.jsx"
 import AdminComponent from "../auth/components/AdminComponent.jsx"
-import { ShoppingCart, ShoppingCartIcon } from "lucide-react"
+import { ShoppingCartIcon } from "lucide-react"
 
 export default function Navbar() {
     return <>
@@ -14,6 +14,14 @@ export default function Navbar() {
             <div className="w-full h-full px-4 max-w-7xl mx-auto flex items-center justify-between">
                 <NavLogo />
                 <ul className="flex gap-4 items-center">
+                    <li>
+                        <Link 
+                            to="/products"
+                            className="text-white text-lg font-semibold"
+                        >   
+                            Browse
+                        </Link>
+                    </li>
                     <li>
                         <Link 
                             to="/cart"
