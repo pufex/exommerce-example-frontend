@@ -11,11 +11,11 @@ export default function CartProvider({children}){
 
     const [cart, setCart] = useState(!localStorage.getItem(key) ? [] : JSON.parse(localStorage.getItem(key)))
 
-    const addToCart = useCallback((item) => {
+    const addToCart = useCallback((item, count) => {
         setCart(prev => {
             const newCart = prev.find((i) => i._id === item._id)
-                ? prev.map(i => i._id === item._id ? {...i, count: i.count+1} : i)
-                : [...prev, item]
+                ? prev.map(i => i._id === item._id ? {...i, count: i.count + count} : i)
+                : [...prev, {...item, count}]
             localStorage.setItem(key, JSON.stringify(newCart))
             return newCart
         })
