@@ -6,7 +6,7 @@ export default function ChangeItemCount({item: {_id: item_id, count}}) {
 
     const {incrementItem, decrementItem} = useCart()
 
-    return <div className="flex items-center gap-3">
+    return <div className="flex items-center gap-2">
         <IconButton onClick={() => decrementItem(item_id)}>
             <Minus className="w-5 h-5 text-white" />
         </IconButton>

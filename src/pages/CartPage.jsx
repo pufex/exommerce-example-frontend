@@ -15,7 +15,7 @@ export default function CartPage() {
                 <Link to="/products" className="text-red-500 font-medium underline">Start browsing</Link> our collection and fill up the cart!
             </p>
         </div>
-        : <div className="w-full flex gap-4 lg:grid lg:grid-cols-2 p-4">
+        : <div className="w-full flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:items-start p-4">
             <section className="w-full bg-gray-200 rounded-lg border border-black/20 p-6 shadow-md">
                 <h1 className="w-full text-left text-2xl font-semibold text-black">
                     SUMMARY
@@ -24,21 +24,21 @@ export default function CartPage() {
                     {
                         cart.map((item) => (
                             <li key={item._id}>
-                                <span className="text-red-600 font-semibold">{item.title}</span>, <span className="text-black font-semibold">${item.price}</span>
+                                <span className="text-red-600 font-semibold">{item.title}</span>, <span className="text-black font-semibold">${item.price} X {item.count} = ${item.price * item.count}</span>
                             </li>
                         ))
                     }
                 </ul>
                 <div className="flex items-center justify-between">
                     <h2 className="text-xl text-black font-semibold">
-                        TOTAL: ${cart.reduce((A, V) => A + V, 0)}
+                        TOTAL: ${cart.reduce((A, V) => A + V.price * V.count, 0)}
                     </h2>
                     <Button>
                         Buy now!
                     </Button>
                 </div>
             </section>
-            <section className="w-full">
+            <section className="w-full bg-gray-200 border border-black/20 shadow-lg rounded-lg overflow-hidden">
                 <ul className="w-full flex flex-col">
                     {
                         cart.map(item => (
@@ -56,9 +56,10 @@ export default function CartPage() {
                                         {item.title}
                                     </h2>
                                 </div>
-                                <div className="flex items-center gap-4">
-                                    <p className="text-lg text-red-600 font-semibold">
-                                        ${item.price}
+                                <div className="flex items-center gap-2">
+                                    <p className="text-lg font-semibold">
+                                        $<span className="text-red-600">{item.price}</span> 
+                                        {"  X  "}{item.count}
                                     </p>
                                     <ChangeItemCount item={item} />
                                     <RemoveItemFromCart item_id={item._id}/>
