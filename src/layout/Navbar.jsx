@@ -1,35 +1,58 @@
 import NavLogo from "../components/NavLogo"
+import { Outlet } from "react-router"
 import { Link } from "react-router"
-
-const links = [
-    {
-        to: "/auth/login",
-    },
-    {
-        to: "/auth/register"
-    }
-]
+import UnloggedComponent from "../auth/components/UnloggedComponent.jsx"
+import PrivateComponent from "../auth/components/PrivateComponent.jsx"
+import LogoutNavButton from "../auth/components/LogoutNavButton.jsx"
+import AdminComponent from "../auth/components/AdminComponent.jsx"
 
 export default function Navbar() {
     return <>
-        <div className="w-full h-20"/>
+        <div className="w-full h-20" />
         <nav className="w-full h-20 fixed top-0 left-0 bg-red-600 border-b-2 border-b-red-900">
             <div className="w-full h-full px-4 max-w-7xl mx-auto flex items-center justify-between">
                 <NavLogo />
-            </div>
-            <ul className="flex space-4 items-center">
-                {
-                    links.map((link, index) => (
-                        <li key={index}>
-                            <Link 
-                                to={link.to}
-                                className="text-lg text-white font-semibold" 
-                            />
+                <ul className="flex gap-4 items-center">
+                    <UnloggedComponent>
+
+                        <li>
+                            <Link
+                                to={"/auth/login"}
+                                className="text-lg text-white font-semibold"
+                            >
+                                Login
+                            </Link>
                         </li>
-                    ))
-                }
-            </ul>
+                        <li>
+                            <Link
+                                to={"/auth/register"}
+                                className="text-lg text-white font-semibold"
+                            >
+                                Register
+                            </Link>
+                        </li>
+                    </UnloggedComponent>
+                    <PrivateComponent>
+                        <li>
+                            <LogoutNavButton />
+                        </li>
+                    </PrivateComponent>
+                    <AdminComponent>
+                        <li>
+                            <Link
+                                to={"/admin/products"}
+                                className="text-lg text-white font-semibold"
+                            >
+                                Dashboard
+                            </Link>
+                        </li>
+                    </AdminComponent>
+                </ul>
+            </div>
         </nav>
+        <main className="w-full max-w-7xl mx-auto">
+            <Outlet />
+        </main>
     </>
-    
+
 }
