@@ -4,6 +4,7 @@ import {useCart} from "../contexts/CartProvider"
 import {publicAxios as axios} from "../api/axios"
 import LoadingBlock from "../components/LoadingBlock"
 import Button from "../components/Button"
+import ProductCounter from "../components/ProductCounter"
 
 export default function ProductPage(){
 
@@ -71,9 +72,7 @@ export default function ProductPage(){
                                 <span className="text-red-600 font-semibold text-xl">${product.price}</span>
                                 , <span className="font-semibold text-xl">instock: {product.instock}</span>
                             </p>
-                            <Button onClick={handleBuy}>
-                                Add to cart
-                            </Button>
+                            <ProductCounter product={product}/>
                         </div>
                     </div>
                 </div>
