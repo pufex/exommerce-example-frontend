@@ -3,9 +3,11 @@ import { useCart } from "../contexts/CartProvider"
 import Button from "../components/Button";
 import ChangeItemCount from "../components/ChangeItemCount"
 import RemoveItemFromCart from "../components/RemoveItemFromCart"
+import { useWindowSize } from "../hooks/useWindowSizes"
 
 export default function CartPage() {
     const { cart } = useCart();
+    const { width: windowWidth } = useWindowSize()
     return cart.length === 0
         ? <div className="py-8 px-4 w-full">
             <h2 className="w-full text-center text-black text-2xl font-semibold mb-6">
@@ -42,13 +44,13 @@ export default function CartPage() {
                 <ul className="w-full flex flex-col">
                     {
                         cart.map(item => (
-                            <li 
+                            <li
                                 key={item._id}
                                 className="w-full h-20 bg-gray-200 px-4 border-b-black/20 flex items-center justify-between"
                             >
                                 <div className="flex items-center gap-4">
-                                    <img 
-                                        src={item.photoURL} 
+                                    <img
+                                        src={item.photoURL}
                                         alt={item.title}
                                         className="w-10 h-10 object-cover object-center border border-black/20 rounded-md"
                                     />
@@ -57,12 +59,14 @@ export default function CartPage() {
                                     </h2>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <p className="text-lg font-semibold">
-                                        $<span className="text-red-600">{item.price}</span> 
-                                        {"  X  "}{item.count}
-                                    </p>
+                                    {
+                                        windowWidth > 500 && <p className="text-lg font-semibold">
+                                            $<span className="text-red-600">{item.price}</span>
+                                            {"  X  "}{item.count}
+                                        </p>
+                                    }
                                     <ChangeItemCount item={item} />
-                                    <RemoveItemFromCart item_id={item._id}/>
+                                    <RemoveItemFromCart item_id={item._id} />
                                 </div>
                             </li>
                         ))
