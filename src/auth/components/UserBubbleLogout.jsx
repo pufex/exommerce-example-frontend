@@ -4,7 +4,7 @@ import UserBubbleButton from "./UserBubbleButton";
 import { LoaderCircle } from "lucide-react";
 import { LogOut } from 'lucide-react';
 
-export default function UserBubbleLogout () {
+export default function UserBubbleLogout ({setVisibility}) {
     const [loading, setLoading] = useState(false)
     const {logout} = useAuth();
 
@@ -12,6 +12,7 @@ export default function UserBubbleLogout () {
         try{
             setLoading(true)
             await logout()
+            setVisibility(false)
         }catch(err){
             console.log(err)
         }finally{
