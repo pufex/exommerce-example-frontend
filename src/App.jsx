@@ -12,6 +12,8 @@ import EditProductPage from "./pages/admin/EditProductPage"
 import CartPage from "./pages/CartPage"
 import ProductsPage from "./pages/ProductsPage"
 import ProductPage from "./pages/ProductPage"
+import SettingsPage from "./pages/SettingsPage"
+import PrivateRoute from "./auth/components/PrivateRoute"
 
 function App() {
   return (
@@ -26,6 +28,10 @@ function App() {
         <Route path="products">
             <Route index element={<ProductsPage />}/>
             <Route path=":id" element={<ProductPage />}/>
+        </Route>
+
+        <Route path="/profile" element={<PrivateRoute />}>
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
 
         <Route path="/auth" element={<UnloggedRoute />}>
