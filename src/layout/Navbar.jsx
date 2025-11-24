@@ -78,7 +78,6 @@ export default function Navbar() {
                                         </Link>
                                     </li>
                                 </AdminComponent>
-                                <UserBubble />
                             </>
                             : <li onClick={handleMenuClick}>
                                 {
@@ -88,7 +87,7 @@ export default function Navbar() {
                                 }
                             </li>
                     }
-
+                    <UserBubble />
                 </ul>
             </div>
         </nav>
