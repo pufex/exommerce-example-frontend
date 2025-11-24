@@ -9,7 +9,7 @@ export default function NavLogo () {
     }
 
     return <h1 
-        className={"text-4xl font-extrabold text-white cursor-pointer"}
+        className={"text-2xl sm:text-4xl font-extrabold text-white cursor-pointer"}
         onClick={() => handleClick()}
     >
         ECOMMERCE

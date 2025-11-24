@@ -23,7 +23,7 @@ export default function AuthProvider ({children}) {
             console.log(err)
             throw err
         }
-    })
+    }, [])
 
     const login = useCallback(async (email, password) => {
         try{
@@ -43,7 +43,7 @@ export default function AuthProvider ({children}) {
             console.log(err)
             throw err
         }
-    })
+    }, [])
 
     const refresh = useCallback(async () => {
         try{
@@ -62,7 +62,7 @@ export default function AuthProvider ({children}) {
             console.log(err)
             throw err
         }
-    })
+    }, [])
 
     const logout = useCallback(async () => {
         try{
@@ -74,7 +74,7 @@ export default function AuthProvider ({children}) {
         }catch(err){
             console.log(err)
         }
-    })
+    }, [])
 
     useLayoutEffect(() => {
         const getAccessToken = async () => {
@@ -91,7 +91,7 @@ export default function AuthProvider ({children}) {
 
     }, [])
 
-    return <AuthContext.Provider value={{auth, register, login, refresh, logout}}>
+    return <AuthContext.Provider value={{auth, setAuth, register, login, refresh, logout}}>
         {
             loading
                 ? <div className="w-full h-screen flex items-center justify-center">

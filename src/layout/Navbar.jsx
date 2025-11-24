@@ -12,6 +12,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router"
 import LogoutListButton from "../auth/components/LogoutListButton.jsx"
 import Button from "../components/Button.jsx"
+import UserBubble from "../auth/components/UserBubble.jsx"
 
 export default function Navbar() {
 
@@ -67,11 +68,6 @@ export default function Navbar() {
                                         </Link>
                                     </li>
                                 </UnloggedComponent>
-                                <PrivateComponent>
-                                    <li>
-                                        <LogoutNavButton />
-                                    </li>
-                                </PrivateComponent>
                                 <AdminComponent>
                                     <li>
                                         <Link
@@ -91,7 +87,7 @@ export default function Navbar() {
                                 }
                             </li>
                     }
-
+                    <UserBubble />
                 </ul>
             </div>
         </nav>
